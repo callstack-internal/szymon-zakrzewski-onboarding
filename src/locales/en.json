@@ -1,0 +1,10 @@
+{
+    "common": {
+        "back": "Back"
+    },
+    "screenTitle": {
+        "home": "Weather",
+        "details": "Details"
+    }
+
+}
