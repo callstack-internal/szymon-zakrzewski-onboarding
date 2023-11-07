@@ -14,6 +14,9 @@ export default {
     text: colorPalette.white,
     background: colorPalette.accent,
   },
+  navArrow: {
+    color: colorPalette.gray,
+  },
   text: {
     primary: colorPalette.black,
     secondary: colorPalette.gray,
