@@ -1,7 +1,7 @@
 import {ComponentType} from 'react';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/homeScreen/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import {translations} from '../locales/translations';
 
