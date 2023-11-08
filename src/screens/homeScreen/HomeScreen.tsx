@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button, View} from 'react-native';
 
-import useNavigation from '../navigation/useNavigation';
-import {Routes} from '../navigation/constants';
-import {translations} from '../locales/translations';
-import common from '../styles/common';
+import useNavigation from '../../navigation/useNavigation';
+import {Routes} from '../../navigation/constants';
+import {translations} from '../../locales/translations';
+import common from '../../styles/common';
 
 function HomeScreen(): JSX.Element {
   const navigation = useNavigation();
