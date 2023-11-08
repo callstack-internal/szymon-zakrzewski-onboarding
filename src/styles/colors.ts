@@ -17,6 +17,9 @@ export default {
   navArrow: {
     color: colorPalette.gray,
   },
+  separator: {
+    background: colorPalette.gray,
+  },
   text: {
     primary: colorPalette.black,
     secondary: colorPalette.gray,
