@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 
-import colors from '../styles/colors';
+import colors from 'app/styles/colors';
 
 type Props = {
   size: 's' | 'm' | 'l';

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button, View} from 'react-native';
 
-import useNavigation from '../navigation/useNavigation';
-import {translations} from '../locales/translations';
-import common from '../styles/common';
+import useNavigation from 'app/navigation/useNavigation';
+import {translations} from 'app/locales/translations';
+import common from 'app/styles/common';
 
 function DetailsScreen(): JSX.Element {
   const navigation = useNavigation();
