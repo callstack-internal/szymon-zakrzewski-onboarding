@@ -7,6 +7,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "prepare": "husky install",
+    "postinstall": "src/tools/configure.sh",
     "start": "react-native start",
     "test": "jest"
   },
