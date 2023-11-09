@@ -6,7 +6,7 @@ const constColors = {
 
 const colorPalette = {
   ...constColors,
-  accent: '#4682B4',
+  accent: '#4689B4',
 };
 
 export default {
