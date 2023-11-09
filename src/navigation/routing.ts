@@ -1,9 +1,9 @@
 import {ComponentType} from 'react';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
-import HomeScreen from '../screens/homeScreen/HomeScreen';
-import DetailsScreen from '../screens/DetailsScreen';
-import {translations} from '../locales/translations';
+import HomeScreen from 'app/screens/homeScreen/HomeScreen';
+import DetailsScreen from 'app/screens/DetailsScreen';
+import {translations} from 'app/locales/translations';
 
 import {Routes} from './constants';
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import colors from '../styles/colors';
-import constants from '../constants';
+import constants from 'app/constants';
+import colors from 'app/styles/colors';
 
 type Props = {
   text: string;
 };
+
 function BadgeLabel({text}: Props): JSX.Element {
   return (
     <View style={styles.container}>
