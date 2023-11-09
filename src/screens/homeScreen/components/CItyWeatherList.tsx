@@ -12,6 +12,8 @@ type ListItem = {
   temperature: string;
 };
 
+export type CityListItem = ListItem;
+
 type Props = {
   data: Array<ListItem>;
   onPress: (item: ListItem) => void;
