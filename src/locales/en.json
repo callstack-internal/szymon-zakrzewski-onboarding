@@ -3,6 +3,12 @@
         "back": "Back",
         "retry": "Retry"
     },
+    "detailsScreen": {
+        "humidity":  "Humidity",
+        "pressure": "Pressure",
+        "wind": "Wind",
+        "clouds": "Clouds"
+    },
     "homeScreen": {
         "error": {
             "message": "Whoops! Something went wrong."

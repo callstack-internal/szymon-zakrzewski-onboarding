@@ -2,16 +2,17 @@ import {ComponentType} from 'react';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 
 import HomeScreen from 'app/screens/homeScreen/HomeScreen';
-import DetailsScreen from 'app/screens/DetailsScreen';
+import DetailsScreen from 'app/screens/detailsScreen/DetailsScreen';
 import {translations} from 'app/locales/translations';
 
-import {Routes} from './constants';
+import {Routes, ScreenProps} from './constants';
 
-type ScreenProps = {
-  component: ComponentType;
+type ScreenMapProps = {
+  component: ComponentType<ScreenProps<any>>;
   options?: NativeStackNavigationOptions;
 };
-export const screensMap: Record<Routes, ScreenProps> = {
+
+export const screensMap: Record<Routes, ScreenMapProps> = {
   home: {
     component: HomeScreen,
     options: {title: translations.screenTitle.home},

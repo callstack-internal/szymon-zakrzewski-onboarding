@@ -6,7 +6,7 @@ import Separator from 'app/components/Separator';
 import constants from 'app/constants';
 
 type ListItem = {
-  id: string;
+  id: number;
   city: string;
   weather: string;
   temperature: string;
@@ -29,7 +29,7 @@ function CityWeatherList({
     <FlatList<ListItem>
       style={styles.container}
       contentContainerStyle={[styles.contentContainer, contentContainerStyle]}
-      keyExtractor={item => item.id}
+      keyExtractor={item => `${item.id}`}
       data={data}
       renderItem={({item}) => (
         <CityWeatherCard
