@@ -1,9 +1,9 @@
 import React from 'react';
 import {FlatList, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 
-import constants from '../../../constants';
-import Separator from '../../../components/Separator';
-import CityWeatherCard from '../../../components/CityWeatherCard';
+import CityWeatherCard from 'app/components/CityWeatherCard';
+import Separator from 'app/components/Separator';
+import constants from 'app/constants';
 
 type ListItem = {
   id: string;

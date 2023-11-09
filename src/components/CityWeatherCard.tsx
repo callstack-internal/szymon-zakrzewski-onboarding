@@ -8,11 +8,10 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import constants from '../constants';
-import colors from '../styles/colors';
-
-import BadgeLabel from './BadgeLabel';
-import NavArrow from './NavArrow';
+import constants from 'app/constants';
+import colors from 'app/styles/colors';
+import BadgeLabel from 'app/components/BadgeLabel';
+import NavArrow from 'app/components/NavArrow';
 
 type Item = {
   id: string;

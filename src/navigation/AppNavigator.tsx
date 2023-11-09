@@ -1,8 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {constants} from './constants';
-import {screensMap} from './routing';
+import {constants} from 'app/navigation/constants';
+import {screensMap} from 'app/navigation/routing';
 
 const Stack = createNativeStackNavigator();
 
