@@ -1,14 +1,14 @@
 const dimensions = {
   badgeLabel: {
     width: 100,
-    height: 40,
-    borderRadius: 20,
+    height: 30,
+    borderRadius: 15,
     padding: 15,
   },
 };
 
 const margins = {
-  small: 5,
+  small: 10,
   medium: 15,
   large: 30,
   huge: 50,
