@@ -14,15 +14,17 @@ import BadgeLabel from 'app/components/BadgeLabel';
 import NavArrow from 'app/components/NavArrow';
 
 type Item = {
-  id: string;
+  id: number;
   city: string;
   weather: string;
   temperature: string;
 };
 
+const formatTemperature = (temp: string) => `${temp} °C`;
+
 type Props = {
   item: Item;
-  onPress: (itemData: Item) => void;
+  onPress?: (itemData: Item) => void;
   showNavArrow?: boolean;
   style?: StyleProp<ViewStyle>;
 };
@@ -37,12 +39,12 @@ function CityWeatherCard({
   return (
     <TouchableOpacity
       style={[styles.container, style]}
-      onPress={() => onPress(item)}>
+      onPress={() => onPress?.(item)}>
       <View style={styles.cityContainer}>
         <Text style={styles.textTitle}>{city}</Text>
         <Text style={styles.textBase}>{weather}</Text>
       </View>
-      <BadgeLabel text={temperature} />
+      <BadgeLabel text={formatTemperature(temperature)} />
       {showNavArrow && <NavArrow size="m" direction="right" />}
     </TouchableOpacity>
   );

@@ -27,7 +27,7 @@ export function useWeatherForCities(): UseWeatherForCities {
     queryFn: () => api.weatherService.getWeatherForCities(constants.cities),
     select: ({list}) =>
       list.map(item => ({
-        id: `${item.id}`,
+        id: item.id,
         city: item.name,
         weather: item.weather[0]?.main || '',
         temperature: `${item.main.temp}`,
