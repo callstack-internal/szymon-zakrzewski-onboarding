@@ -5,28 +5,30 @@ import Config from 'react-native-config';
 import {CityWeather} from 'app/api/data/CityWeather';
 import {GroupWeather} from 'app/api/data/GroupWeather';
 import {APIError, ErrorCode} from 'app/api/Error';
+import {weatherApiEndpoints, weatherApiUrl} from 'app/api/endpoints';
 
-const apiUrl = 'https://api.openweathermap.org/';
-const endpoints = {
-  cityGroup: 'data/2.5/group',
-  city: 'data/2.5/weather',
-};
 const requestTimeoutMs = 10000;
 
 const weatherApi = axios.create({
-  baseURL: apiUrl,
+  baseURL: weatherApiUrl,
   timeout: requestTimeoutMs,
   params: {
     appid: Config.WEATHER_API_KEY,
   },
 });
 
+export type GetWeatherForCitiesParams = {
+  id: string;
+  units: string;
+};
+
 async function getWeatherForCities(id: number[]): Promise<GroupWeather> {
-  const response = await weatherApi.get(endpoints.cityGroup, {
-    params: {
-      id: id.join(','),
-      units: 'metric',
-    },
+  const params: GetWeatherForCitiesParams = {
+    id: id.join(','),
+    units: 'metric',
+  };
+  const response = await weatherApi.get(weatherApiEndpoints.cityGroup, {
+    params,
   });
   if (!Value.Check(GroupWeather, response.data)) {
     throw new APIError(
@@ -37,9 +39,14 @@ async function getWeatherForCities(id: number[]): Promise<GroupWeather> {
   return response.data;
 }
 
+export type GetWeatherForCityParams = {
+  id: number;
+};
+
 async function getWeatherForCity(id: number): Promise<CityWeather> {
-  const response = await weatherApi.get(endpoints.city, {
-    params: {id},
+  const params: GetWeatherForCityParams = {id};
+  const response = await weatherApi.get(weatherApiEndpoints.city, {
+    params,
   });
   if (!Value.Check(CityWeather, response.data)) {
     throw new APIError(
