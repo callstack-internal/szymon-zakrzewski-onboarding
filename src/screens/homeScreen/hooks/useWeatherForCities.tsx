@@ -1,5 +1,5 @@
 import {useFocusEffect} from '@react-navigation/native';
-import {useQuery} from 'react-query';
+import {useQuery, QueryFunction} from 'react-query';
 
 import api from 'app/api';
 import {GroupWeather} from 'app/api/data/GroupWeather';
@@ -15,7 +15,9 @@ type UseWeatherForCities = {
   refetch: () => void;
 };
 
-export function useWeatherForCities(): UseWeatherForCities {
+export function useWeatherForCities(
+  queryFn?: QueryFunction<GroupWeather>,
+): UseWeatherForCities {
   const {
     isLoading,
     isFetching,
@@ -24,7 +26,10 @@ export function useWeatherForCities(): UseWeatherForCities {
     refetch: _refetch,
   } = useQuery<GroupWeather, APIError | Error, CityListItem[]>({
     queryKey: ['weatherForCities'],
-    queryFn: () => api.weatherService.getWeatherForCities(constants.cities),
+    queryFn: context =>
+      queryFn
+        ? queryFn(context)
+        : api.weatherService.getWeatherForCities(constants.cities),
     select: ({list}) =>
       list.map(item => ({
         id: item.id,
