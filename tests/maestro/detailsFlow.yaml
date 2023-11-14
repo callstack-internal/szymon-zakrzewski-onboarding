@@ -1,0 +1,11 @@
+appId: org.reactjs.native.example.meteo
+---
+- assertVisible: 'Details'
+- assertVisible: 'Humidity'
+- assertVisible: ^([0-9]|[1-9][0-9]|100)%$
+- assertVisible: 'Pressure'
+- assertVisible: ^\d{3,4} hPa$
+- assertVisible: 'Wind'
+- assertVisible: ^\d+(\.\d+)? km\/h$
+- assertVisible: 'Clouds'
+- assertVisible: ^([0-9]|[1-9][0-9]|100)%$

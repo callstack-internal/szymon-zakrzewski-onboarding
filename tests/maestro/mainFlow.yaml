@@ -1,0 +1,9 @@
+appId: org.reactjs.native.example.meteo
+---
+- launchApp
+- runFlow: ./homeFlow.yaml
+- tapOn:
+    id: 'city-weather-card-warsaw'
+- runFlow: ./detailsFlow.yaml
+- tapOn: 'Home'
+- runFlow: ./homeFlow.yaml

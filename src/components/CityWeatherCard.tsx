@@ -39,7 +39,8 @@ function CityWeatherCard({
   return (
     <TouchableOpacity
       style={[styles.container, style]}
-      onPress={() => onPress?.(item)}>
+      onPress={() => onPress?.(item)}
+      testID={`city-weather-card-${city.toLowerCase()}`}>
       <View style={styles.cityContainer}>
         <Text style={styles.textTitle}>{city}</Text>
         <Text style={styles.textBase}>{weather}</Text>
