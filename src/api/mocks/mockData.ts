@@ -40,12 +40,12 @@ export const mockCityWeather = [
     main: {
       humidity: 50,
       pressure: 1000,
-      temp: 30,
+      temp: 25,
     },
     weather: [
       {
-        icon: 'icon_sun',
-        main: 'sun',
+        icon: 'icon_rain',
+        main: 'rain',
       },
     ],
     wind: {
