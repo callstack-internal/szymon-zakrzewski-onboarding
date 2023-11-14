@@ -1,0 +1,7 @@
+appId: org.reactjs.native.example.meteo
+---
+- assertVisible: 'Home'
+- assertVisible:
+    id: 'city-weather-card-warsaw'
+- assertVisible:
+    id: 'city-weather-card-wroclaw'
