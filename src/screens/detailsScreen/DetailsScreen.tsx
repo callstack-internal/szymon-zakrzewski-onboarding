@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {useQuery} from 'react-query';
 
 import CityWeatherCard from 'app/components/CityWeatherCard';
-import {Routes, ScreenProps} from 'app/navigation/constants';
+import {ScreenProps} from 'app/navigation/constants';
 import constants from 'app/constants';
 import Separator from 'app/components/Separator';
 import {CityWeather} from 'app/api/data/CityWeather';
@@ -47,7 +47,7 @@ const mapData = (key: keyof CityWeatherDetails, value: number) => {
   };
 };
 
-function DetailsScreen({route}: ScreenProps<Routes.details>): JSX.Element {
+function DetailsScreen({route}: ScreenProps<'details'>): JSX.Element {
   const {data} = useQuery<CityWeather, APIError | Error, CityWeatherDetails>({
     queryKey: ['weatherForCities', route.params.id],
     queryFn: () => api.weatherService.getWeatherForCity(route.params.id),
