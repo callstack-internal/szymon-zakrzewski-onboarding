@@ -1,9 +1,11 @@
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-export enum Routes {
-  home = 'home',
-  details = 'details',
-}
+export const Routes = {
+  home: 'home',
+  details: 'details',
+} as const;
+
+export type Routes = (typeof Routes)[keyof typeof Routes];
 
 type CommonRouteParams = {};
 
