@@ -1,12 +1,5 @@
-import React, {useMemo} from 'react';
-import {
-  ActivityIndicator,
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  ViewStyle,
-} from 'react-native';
+import React from 'react';
+import {ActivityIndicator, Button, StyleSheet, Text, View} from 'react-native';
 
 import useNavigation from 'app/navigation/useNavigation';
 import {Routes} from 'app/navigation/constants';
@@ -25,29 +18,25 @@ function HomeScreen(): JSX.Element {
   const insets = useSafeAreaInsets();
   const {isLoading, data, error, refetch} = useWeatherForCities();
 
-  const {listContentContainerStyle, centeredWithBottomInset} = useMemo<{
-    listContentContainerStyle: ViewStyle;
-    centeredWithBottomInset: ViewStyle;
-  }>(
-    () => ({
-      listContentContainerStyle: {
-        paddingBottom: insets.bottom,
-      },
-      centeredWithBottomInset: {
-        ...common.centered,
-        paddingBottom: insets.bottom,
-      },
-    }),
-    [insets],
-  );
-
   if (isLoading) {
-    return <ActivityIndicator size="large" style={centeredWithBottomInset} />;
+    return (
+      <ActivityIndicator
+        size="large"
+        style={{
+          ...common.centered,
+          paddingBottom: insets.bottom,
+        }}
+      />
+    );
   }
 
   if (error || !data) {
     return (
-      <View style={centeredWithBottomInset}>
+      <View
+        style={{
+          ...common.centered,
+          paddingBottom: insets.bottom,
+        }}>
         <Text style={styles.textTitle}>
           {translations.homeScreen.error.message}
         </Text>
@@ -63,7 +52,7 @@ function HomeScreen(): JSX.Element {
         onPress={item => {
           navigation.navigate(Routes.details, {...item});
         }}
-        contentContainerStyle={listContentContainerStyle}
+        contentContainerStyle={{paddingBottom: insets.bottom}}
       />
     </View>
   );
