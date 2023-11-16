@@ -2,12 +2,7 @@ import {useCallback, useEffect, useRef, useState} from 'react';
 
 import LocationModule, {Location} from 'app/native/Location';
 
-type UseCurrentLocation = {
-  location?: Location;
-  refreshLocation: () => void;
-};
-
-export function useCurrentLocation(): UseCurrentLocation {
+export function useCurrentLocation() {
   const [currentLocation, setCurrentLocation] = useState<Location>();
   const mounted = useRef(false);
 
