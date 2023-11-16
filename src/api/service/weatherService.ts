@@ -17,7 +17,7 @@ const weatherApi = axios.create({
   },
 });
 
-export type GetWeatherForCitiesParams = {
+type GetWeatherForCitiesParams = {
   id: string;
   units: string;
 };
@@ -39,7 +39,7 @@ async function getWeatherForCities(id: number[]): Promise<GroupWeather> {
   return response.data;
 }
 
-export type GetWeatherForCityParams = {
+type GetWeatherForCityParams = {
   id: number;
 };
 
