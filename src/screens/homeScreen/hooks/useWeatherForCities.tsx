@@ -32,14 +32,7 @@ const sortByLocation = (
   });
 };
 
-type UseWeatherForCities = {
-  isLoading: boolean;
-  data?: CityListItem[];
-  error?: APIError | Error | null;
-  refetch: () => void;
-};
-
-export function useWeatherForCities(): UseWeatherForCities {
+export function useWeatherForCities() {
   const {
     isLoading,
     isFetching,
