@@ -21,7 +21,9 @@ function HomeScreen(): JSX.Element {
   if (isLoading) {
     return (
       <ActivityIndicator
+        accessible
         size="large"
+        role="progressbar"
         style={{
           ...common.centered,
           paddingBottom: insets.bottom,
