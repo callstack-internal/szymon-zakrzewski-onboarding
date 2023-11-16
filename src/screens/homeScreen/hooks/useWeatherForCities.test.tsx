@@ -1,6 +1,6 @@
 import React from 'react';
 import {renderHook, act, waitFor} from '@testing-library/react-native';
-import {QueryClient, QueryClientProvider} from 'react-query';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {NavigationContainer} from '@react-navigation/native';
 
 import api from 'app/api';
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
       retry: false,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
-      cacheTime: 0,
+      gcTime: 0,
     },
   },
 });
@@ -34,50 +34,58 @@ function Wrapper({children}: {children?: React.ReactNode}): JSX.Element {
 }
 
 describe('useWeatherForCities', () => {
-  it('should load mock data', async () => {
-    const mockFunction = jest.fn(() =>
-      api.weatherService.getWeatherForCities(mockValidCityIds),
-    );
-    const {result} = renderHook(() => useWeatherForCities(mockFunction), {
-      wrapper: Wrapper,
+  describe('data fetching', () => {
+    beforeEach(() => queryClient.clear()); // Clear cache.
+
+    it('should load mock data', async () => {
+      const mockFunction = jest.fn(() =>
+        api.weatherService.getWeatherForCities(mockValidCityIds),
+      );
+      const {result} = renderHook(() => useWeatherForCities(mockFunction), {
+        wrapper: Wrapper,
+      });
+      await waitFor(() => expect(result.current.data).toHaveLength(2));
     });
-    await waitFor(() => expect(result.current.data).toHaveLength(2));
+
+    it('should return APIError', async () => {
+      const mockFunction = jest.fn(() =>
+        api.weatherService.getWeatherForCities(mockInvalidCityIds),
+      );
+      const {result} = renderHook(() => useWeatherForCities(mockFunction), {
+        wrapper: Wrapper,
+      });
+
+      await waitFor(() => expect(result.current.isLoading).toBe(false));
+      await waitFor(() => expect(result.current.data).toBe(undefined));
+      await waitFor(() =>
+        expect(result.current.error).toBeInstanceOf(APIError),
+      );
+    });
   });
 
-  it('should return APIError', async () => {
-    const mockFunction = jest.fn(() =>
-      api.weatherService.getWeatherForCities(mockInvalidCityIds),
-    );
-    const {result} = renderHook(() => useWeatherForCities(mockFunction), {
-      wrapper: Wrapper,
+  describe('refetching', () => {
+    it('should call api once', async () => {
+      const mockFunction = jest.fn(() =>
+        api.weatherService.getWeatherForCities(mockValidCityIds),
+      );
+      renderHook(() => useWeatherForCities(mockFunction), {
+        wrapper: Wrapper,
+      });
+      await waitFor(() => expect(mockFunction.mock.calls).toHaveLength(1));
     });
 
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-    await waitFor(() => expect(result.current.data).toBe(undefined));
-    await waitFor(() => expect(result.current.error).toBeInstanceOf(APIError));
-  });
-
-  it('should call api once', async () => {
-    const mockFunction = jest.fn(() =>
-      api.weatherService.getWeatherForCities(mockValidCityIds),
-    );
-    renderHook(() => useWeatherForCities(mockFunction), {
-      wrapper: Wrapper,
+    it('should call api twice after refetch', async () => {
+      const mockFunction = jest.fn(() =>
+        api.weatherService.getWeatherForCities(mockValidCityIds),
+      );
+      const {result} = renderHook(() => useWeatherForCities(mockFunction), {
+        wrapper: Wrapper,
+      });
+      await waitFor(() => expect(mockFunction.mock.calls).toHaveLength(1));
+      act(() => {
+        result.current.refetch();
+      });
+      await waitFor(() => expect(mockFunction.mock.calls).toHaveLength(2));
     });
-    await waitFor(() => expect(mockFunction.mock.calls).toHaveLength(1));
-  });
-
-  it('should call api twice after refetch', async () => {
-    const mockFunction = jest.fn(() =>
-      api.weatherService.getWeatherForCities(mockValidCityIds),
-    );
-    const {result} = renderHook(() => useWeatherForCities(mockFunction), {
-      wrapper: Wrapper,
-    });
-    await waitFor(() => expect(mockFunction.mock.calls).toHaveLength(1));
-    act(() => {
-      result.current.refetch();
-    });
-    await waitFor(() => expect(mockFunction.mock.calls).toHaveLength(2));
   });
 });

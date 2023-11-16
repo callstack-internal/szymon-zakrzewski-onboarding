@@ -6,7 +6,7 @@ import {
   screen,
   userEvent,
 } from '@testing-library/react-native';
-import {QueryClient, QueryClientProvider} from 'react-query';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {NavigationContainer} from '@react-navigation/native';
 
 import api from 'app/api';
@@ -17,6 +17,7 @@ import {useWeatherForCities} from 'app/screens/homeScreen/hooks/useWeatherForCit
 import CityWeatherList from './CItyWeatherList';
 
 beforeAll(() => server.listen()); // Start the interception.
+beforeEach(() => queryClient.clear()); // Clear cache.
 afterEach(() => server.resetHandlers()); // Remove handlers added in individual tests.
 afterAll(() => server.close()); // Disable request interception and clean up.
 jest.useFakeTimers();
@@ -27,7 +28,7 @@ const queryClient = new QueryClient({
       retry: false,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
-      cacheTime: 0,
+      gcTime: 0,
     },
   },
 });

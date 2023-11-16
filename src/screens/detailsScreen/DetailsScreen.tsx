@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useQuery} from 'react-query';
+import {useQuery} from '@tanstack/react-query';
 
 import CityWeatherCard from 'app/components/CityWeatherCard';
 import {ScreenProps} from 'app/navigation/constants';
