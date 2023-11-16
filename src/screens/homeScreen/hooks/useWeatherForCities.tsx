@@ -1,5 +1,5 @@
 import {useFocusEffect} from '@react-navigation/native';
-import {useQuery, QueryFunction} from 'react-query';
+import {useQuery, QueryFunction} from '@tanstack/react-query';
 
 import api from 'app/api';
 import {GroupWeather} from 'app/api/data/GroupWeather';
