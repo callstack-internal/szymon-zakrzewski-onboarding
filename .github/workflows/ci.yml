@@ -1,0 +1,15 @@
+name: CI
+run-name: Test & Build
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup
+        uses: ./.github/setupAction
+      - name: Lint
+        run: yarn lint
+      - name: Test
+        run: yarn test --silent
