@@ -1,0 +1,11 @@
+name: 'Setup action'
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '21'
+    - name: Install deps
+      run: yarn install
+      shell: bash
