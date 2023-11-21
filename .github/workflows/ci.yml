@@ -13,3 +13,19 @@ jobs:
         run: yarn lint
       - name: Test
         run: yarn test --silent
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup
+        uses: ./.github/setupAction
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+      - name: Setup bundler
+        run: |
+          gem install bundler
+          cd android && bundle install
+      - name: Build android
+        run: cd android && bundle exec fastlane build
